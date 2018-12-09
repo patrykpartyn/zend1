@@ -1,0 +1,30 @@
+<?php
+ //odule/Album/view/album/album/index.phtml:
+
+$title = 'Pracownicy';
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+<p>
+    <a href="<?= $this->url('worker', ['action' => 'add']) ?>">Dodaj nowego pracownika</a>
+</p>
+
+<table class="table">
+    <tr>
+        <th>Imie</th>
+        <th>Nazwisko</th>
+        <th>Stanowisko</th>
+        <th>Opcje</th>
+    </tr>
+    <?php foreach ($workers as $worker) : ?>
+        <tr>
+            <td><?= $this->escapeHtml($worker->name) ?></td>
+            <td><?= $this->escapeHtml($worker->lastname) ?></td>
+            <td><?= $this->escapeHtml($worker->position) ?></td>
+            <td>
+                <a href="<?= $this->url('worker', ['action' => 'edit', 'id' => $worker->id]) ?>">Edycja</a>
+                <a href="<?= $this->url('worker', ['action' => 'delete', 'id' => $worker->id]) ?>">Usuń</a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+</table>
